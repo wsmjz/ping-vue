@@ -10,17 +10,32 @@
     <div id="app">
         <input type="text" v-model="person.age">
         {{person.name}}
+        {{person.age}}
+        <p>计算属性{{getNewName}}</p>
+        <button v-on:click="getLists">点击事件</button>
+        <div v-html="message"></div>
     </div>
     <script src="./MVVM.js"></script>
     <script>
-        new Vue({
+        let vm = new Vue({
             el: '#app',
             data: {
                 person: {
                     name: '张山',
                     age: 20
+                },
+                message: '<h1>解析html</h1>'
+            },
+            computed: {
+                getNewName() {
+                    return this.person.age + '计算属性'
                 }
-            }
+            },
+            methods: {
+                getLists() {
+                    this.person.age = '点击事件改变年龄18'
+                }
+            },
         })
     </script>
 </body>
